@@ -11,7 +11,7 @@ def soma_elementos_matriz(matriz): # soma os elementos de cada linha da matriz
       resultado.append(soma)
   return resultado
 
-
+# função para resolver o sistema linear Ax = b
 def eliminacao_gauss(A, b):
   n = len(b)
 
@@ -33,6 +33,22 @@ def eliminacao_gauss(A, b):
   return x
 
 # função para criar uma matriz de Hilbert
-def hilbert(a, z):
-    return [[1 / (i + j + 1) for j in range(z)] for i in range(a)]  
+def hilbert(a):
+    matriz = []
+    for i in range(a):
+        linha = []
+        for j in range(a):
+            linha.append(1/(i+j+1))
+        matriz.append(linha)
+    return matriz
+
+
+#chamando a função para criar a matriz de Hilbert
+tamanhoMatriz = int(input("Digite o tamanho da matriz: "))
+A = hilbert(tamanhoMatriz)
+b = soma_elementos_matriz(A)
+
+print("A matriz de Hilbert é: ", A)
+print("O vetor b é: ", b)
+print("A solução do sistema é: ", eliminacao_gauss(A, b))
 
