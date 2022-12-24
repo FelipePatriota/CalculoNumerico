@@ -11,7 +11,7 @@ def soma_elementos_matriz(matriz): # soma os elementos de cada linha da matriz
       resultado.append(soma)
   return resultado
 
-# função para resolver o sistema linear Ax = b
+# função para resolver o sistema linear Ax = b, a seria a matriz e b o vetor
 def eliminacao_gauss(A, b):
   n = len(b)
 
@@ -50,5 +50,6 @@ b = soma_elementos_matriz(A)
 
 print("A matriz de Hilbert é: ", A)
 print("O vetor b é: ", b)
-print("A solução do sistema é: ", eliminacao_gauss(A, b))
+print("----------------------------------")
+print("A solução do sistema é:" , eliminacao_gauss(A, b))
 
