@@ -3,11 +3,11 @@ import math # importa a biblioteca math
 
 
 def f(x):
-  return math.pow(x,3) + math.pow(x,2) - x + 1 #função a ser analisada
+  return math.pow(x,3) + math.pow(x,2) - x + 1 #função a ser analisada 
 
 k = 0  #iterações iniciais em 0 
 a = -2 #intervalo inicial
-b = -1 #intervalo final
+b = -1 #intervalo final 
 e = 0.00001 #precisão 
 
 if f((a+b)/2) < e: #se a raiz for encontrada no meio do intervalo
