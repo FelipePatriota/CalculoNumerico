@@ -12,8 +12,8 @@ def p(x, a):
 x = [30, 35, 40]
 y = [0.99826, 0.99818, 0.99828]
 
-w = [20, 25, 30, 35, 40, 45, 50]
-z = [0.99907, 0.99852, 0.99826, 0.99818, 0.99828, 0.99849, 0.99878]
+x2 = [20, 25, 30, 35, 40, 45, 50]
+y2 = [0.99907, 0.99852, 0.99826, 0.99818, 0.99828, 0.99849, 0.99878]
 
 # Essa função retorna a matriz de Vandermonde para um conjunto de pontos x, que é utilizada para ajustar um polinômio aos pontos.
 def vandermonde_matrix(x, n):
@@ -23,21 +23,16 @@ def vandermonde_matrix(x, n):
             V[i,j] = x[i]**j
     return V 
 
-
-
-
-
 # Qual a temperatura tal que o calor específico é 0.99837? Use uma interpolação linear. para graus celsius
-def find_temperature(c, w, z):
-    n = len(w)
-    V = vandermonde_matrix(w, n-1)
-    a = np.linalg.solve(V, z)
+def find_temperature(c, x2, y2):
+    n = len(x2)
+    V = vandermonde_matrix(x2, n-1)
+    a = np.linalg.solve(V, y2)
     for i in range(n-1):
-        if z[i] <= c <= z[i+1]:
-            t = w[i] + (c - z[i]) * (w[i+1] - w[i]) / (z[i+1] - z[i])
+        if y2[i] <= c <= y2[i+1]:
+            t = x2[i] + (c - y2[i]) * (x2[i+1] - x2[i]) / (y2[i+1] - y2[i])
             return t
     return None
-
 
 # Esses são os graus dos polinômios que serão ajustados
 grau_p2 = 2
@@ -45,16 +40,16 @@ grau_p6 = 6
 
 # Matrizes de Vandermonde para cada conjunto de pontos
 V = vandermonde_matrix(x, grau_p2)
-D = vandermonde_matrix(w, grau_p6)
+D = vandermonde_matrix(x2, grau_p6)
 
 # Resolução do sistema para os coeficientes dos polinômios
 a = np.linalg.solve(V, y)
-c = np.linalg.solve(D, z)
+c = np.linalg.solve(D, y2)
 
 
 # Impressão dos resultados
 print("Esse é o valor para um polinômio de grau 2:", p(32.5, a))
 print("Esse é o valor para um polinômio de grau 6:", p(32.5, c))
-print("Essa é a temperatura para um calor específico de 0.99837:%.2f" % find_temperature(0.99837, w, z), "°C")
+print("Essa é a temperatura para um calor específico:%.2f" % find_temperature(0.99837, x2, y2), "°C")
 
 
